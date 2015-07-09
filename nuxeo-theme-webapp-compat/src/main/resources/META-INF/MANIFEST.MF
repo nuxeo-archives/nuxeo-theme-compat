@@ -5,3 +5,5 @@ Bundle-SymbolicName: org.nuxeo.theme.webapp.compat;singleton:=true
 Bundle-Localization: plugin
 Bundle-Vendor: Nuxeo
 Bundle-Category: web
+Nuxeo-Component: OSGI-INF/webapp-core-theme-contrib.xml
+
