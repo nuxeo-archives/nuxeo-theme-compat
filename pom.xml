@@ -22,6 +22,7 @@
     <module>nuxeo-theme-jsf</module>
     <module>nuxeo-theme-webengine</module>
     <module>nuxeo-theme-bank</module>
+    <module>nuxeo-theme-webapp-compat</module>
   </modules>
 
   <organization>

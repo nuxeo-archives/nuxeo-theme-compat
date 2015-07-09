@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: NXThemes Webapp Compat
+Bundle-SymbolicName: org.nuxeo.theme.webapp.compat;singleton:=true
+Bundle-Localization: plugin
+Bundle-Vendor: Nuxeo
+Bundle-Category: web
