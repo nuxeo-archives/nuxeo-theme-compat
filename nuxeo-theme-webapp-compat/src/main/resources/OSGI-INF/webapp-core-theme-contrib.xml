@@ -21,6 +21,7 @@
 
     <theme>
       <src>themes/document-management.xml</src>
+      <src>themes/nuxeo-search.xml</src>
     </theme>
 
   </extension>
