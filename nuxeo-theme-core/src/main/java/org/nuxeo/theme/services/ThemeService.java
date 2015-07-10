@@ -627,6 +627,9 @@ public class ThemeService extends DefaultComponent {
     private void unregisterBank(Extension extension) {
         Object[] contribs = extension.getContributions();
         TypeRegistry typeRegistry = (TypeRegistry) getRegistry("types");
+        if (typeRegistry == null) {
+            return;
+        }
         for (Object contrib : contribs) {
             if (contrib instanceof ResourceBank) {
                 ResourceBank resourceBank = (ResourceBank) contrib;
