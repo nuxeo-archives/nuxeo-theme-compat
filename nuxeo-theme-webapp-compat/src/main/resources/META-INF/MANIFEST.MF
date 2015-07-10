@@ -6,4 +6,5 @@ Bundle-Localization: plugin
 Bundle-Vendor: Nuxeo
 Bundle-Category: web
 Nuxeo-Component: OSGI-INF/webapp-core-theme-contrib.xml,
-  OSGI-INF/search-theme-contrib.xml
+  OSGI-INF/search-theme-contrib.xml,
+  OSGI-INF/admin-theme-contrib.xml
