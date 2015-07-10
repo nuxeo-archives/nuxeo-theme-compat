@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.user.center.theme.compat">
+
+  <require>org.nuxeo.theme.core</require>
+  <require>org.nuxeo.theme.fragments</require>
+  <require>org.nuxeo.theme.html</require>
+  <require>org.nuxeo.theme.jsf</require>
+
+  <!-- themes -->
+  <extension target="org.nuxeo.theme.services.ThemeService" point="themes">
+
+    <theme>
+      <src>themes/user-center.xml</src>
+    </theme>
+
+  </extension>
+
+    <!-- application settings -->
+  <extension target="org.nuxeo.theme.services.ThemeService" point="applications">
+
+    <application root="${org.nuxeo.ecm.contextPath}" template-engine="jsf-facelets">
+
+      <view id="/view_home.xhtml">
+        <theme>userCenter/default</theme>
+      </view>
+      <view id="/home_view_documents.xhtml">
+        <theme>userCenter/default</theme>
+      </view>
+
+    </application>
+
+  </extension>
+
+
+</component>
