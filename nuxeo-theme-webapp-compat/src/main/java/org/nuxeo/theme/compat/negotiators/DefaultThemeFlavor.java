@@ -22,13 +22,13 @@ import org.nuxeo.runtime.api.Framework;
 import org.nuxeo.theme.negotiation.Negotiator;
 import org.nuxeo.theme.negotiation.Scheme;
 import org.nuxeo.theme.styling.service.ThemeStylingService;
-import org.nuxeo.theme.styling.service.descriptors.Flavor;
+import org.nuxeo.theme.styling.service.descriptors.FlavorDescriptor;
 
 /**
  * Negotiator that returns the default flavor configured for negotiated theme page.
  *
  * @see ThemeStylingService
- * @see Flavor
+ * @see FlavorDescriptor
  * @since 5.5
  */
 public class DefaultThemeFlavor implements Scheme {
