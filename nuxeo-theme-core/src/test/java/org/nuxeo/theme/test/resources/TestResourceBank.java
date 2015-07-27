@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.SystemUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -79,23 +80,23 @@ public class TestResourceBank extends NXRuntimeTestCase {
 
     @Test
     public void testGetBankLogoFile() throws IOException {
-        if (!isWindows()) {
-            assertTrue(BankManager.getBankLogoFile(BANK_NAME).getPath().endsWith("/test/logo.png"));
-        } else {
+        if (SystemUtils.IS_OS_WINDOWS) {
             assertTrue(BankManager.getBankLogoFile(BANK_NAME).getPath().endsWith("\\test\\logo.png"));
+        } else {
+            assertTrue(BankManager.getBankLogoFile(BANK_NAME).getPath().endsWith("/test/logo.png"));
         }
     }
 
     @Test
     public void testGetImageFile() throws IOException {
-        if (!isWindows()) {
-            assertTrue(BankManager.getImageFile(BANK_NAME, COLLECTION_NAME, "emoticon_smile.png")
-                                  .getPath()
-                                  .endsWith("/test/Test/image/emoticon_smile.png"));
-        } else {
+        if (SystemUtils.IS_OS_WINDOWS) {
             assertTrue(BankManager.getImageFile(BANK_NAME, COLLECTION_NAME, "emoticon_smile.png")
                                   .getPath()
                                   .endsWith("\\test\\Test\\image\\emoticon_smile.png"));
+        } else {
+            assertTrue(BankManager.getImageFile(BANK_NAME, COLLECTION_NAME, "emoticon_smile.png")
+                                  .getPath()
+                                  .endsWith("/test/Test/image/emoticon_smile.png"));
         }
     }
 
@@ -188,8 +189,4 @@ public class TestResourceBank extends NXRuntimeTestCase {
         assertFalse(BankUtils.checkFilePath("test\na"));
     }
 
-    public static boolean isWindows() {
-        String os = System.getProperty("os.name").toLowerCase();
-        return (os.indexOf("win") >= 0);
-    }
 }
