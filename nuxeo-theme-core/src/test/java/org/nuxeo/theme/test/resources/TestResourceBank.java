@@ -1,5 +1,5 @@
 /*
- * (C) Copyright 2006-2007 Nuxeo SAS <http://nuxeo.com> and others
+ * (C) Copyright 2006-2015 Nuxeo SA <http://nuxeo.com> and others
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,6 @@
  * Contributors:
  *     Jean-Marc Orliaguet, Chalmers
  *
- * $Id$
  */
 
 package org.nuxeo.theme.test.resources;
@@ -22,6 +21,7 @@ import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 import org.nuxeo.common.utils.ZipUtils;
@@ -43,6 +43,7 @@ public class TestResourceBank extends NXRuntimeTestCase {
 
     private final String NUXEO_URL_PROPERTY = "http://localhost:8090/nuxeo";
 
+    @Override
     @Before
     public void setUp() throws Exception {
         System.setProperty("nuxeo.url", "http://localhost:8090/nuxeo");
@@ -65,7 +66,7 @@ public class TestResourceBank extends NXRuntimeTestCase {
     }
 
     @Test
-    public void testGetBankNames() throws IOException {
+    public void testGetBankNames() {
         assertEquals(BANK_NAME, BankManager.getBankNames().get(0));
     }
 
@@ -88,17 +89,21 @@ public class TestResourceBank extends NXRuntimeTestCase {
     @Test
     public void testGetImageFile() throws IOException {
         if (!isWindows()) {
-            assertTrue(BankManager.getImageFile(BANK_NAME, COLLECTION_NAME, "emoticon_smile.png").getPath().endsWith(
-                    "/test/Test/image/emoticon_smile.png"));
+            assertTrue(BankManager.getImageFile(BANK_NAME, COLLECTION_NAME, "emoticon_smile.png")
+                                  .getPath()
+                                  .endsWith("/test/Test/image/emoticon_smile.png"));
         } else {
-            assertTrue(BankManager.getImageFile(BANK_NAME, COLLECTION_NAME, "emoticon_smile.png").getPath().endsWith(
-                    "\\test\\Test\\image\\emoticon_smile.png"));
+            assertTrue(BankManager.getImageFile(BANK_NAME, COLLECTION_NAME, "emoticon_smile.png")
+                                  .getPath()
+                                  .endsWith("\\test\\Test\\image\\emoticon_smile.png"));
         }
     }
 
     @Test
     public void testGetStyleInfo() throws IOException {
-        Map styleInfo = (Map) BankManager.getInfo(BANK_NAME, COLLECTION_NAME, "style").get("test.css");
+        @SuppressWarnings("unchecked")
+        Map<String, Object> styleInfo = (Map<String, Object>) BankManager.getInfo(BANK_NAME, COLLECTION_NAME, "style")
+                                                                         .get("test.css");
         assertEquals(styleInfo.get("description"), "Test skin");
         assertEquals(styleInfo.get("skin"), true);
     }
@@ -111,7 +116,7 @@ public class TestResourceBank extends NXRuntimeTestCase {
     }
 
     @Test
-    public void testGetStylePreviewFileNotFound() throws IOException {
+    public void testGetStylePreviewFileNotFound() {
         boolean thrown = false;
         try {
             BankManager.getStylePreviewFile(BANK_NAME, COLLECTION_NAME, "style-not-found.css");
