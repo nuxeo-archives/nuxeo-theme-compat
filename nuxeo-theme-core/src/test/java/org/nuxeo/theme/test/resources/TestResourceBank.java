@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.SystemUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,14 +45,27 @@ public class TestResourceBank extends NXRuntimeTestCase {
 
     private final String NUXEO_URL_PROPERTY = "http://localhost:8090/nuxeo";
 
+    private String oldProperty;
+
     @Override
     @Before
     public void setUp() throws Exception {
-        System.setProperty("nuxeo.url", "http://localhost:8090/nuxeo");
+        oldProperty = System.setProperty("nuxeo.url", NUXEO_URL_PROPERTY);
         super.setUp();
         deployContrib("org.nuxeo.theme.core", "OSGI-INF/nxthemes-core-service.xml");
         deployContrib("org.nuxeo.theme.core", "OSGI-INF/nxthemes-core-contrib.xml");
         deployContrib("org.nuxeo.theme.core.tests", "theme-bank-config.xml");
+    }
+
+    @Override
+    @After
+    public void tearDown() throws Exception {
+        if (oldProperty != null) {
+            System.setProperty("nuxeo.url", oldProperty);
+        } else {
+            System.clearProperty("nuxeo.url");
+        }
+        super.tearDown();
     }
 
     @Test
